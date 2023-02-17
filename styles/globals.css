@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+:root {
+  --brandColor: #03d47f;
+  --brandColorHover: #03c475;
+  --lightBg: #fff;
+  --textColor: #191a30;
+  --textColorMuted: #434462;
+  --textButton: #fff;
+
+  --bgColor: #f4f6fa;
+  --secondaryColor: #d3ffab;
+  --brandBlue:#4353ff;
+  --blueLink: #4353ff;
+
+  --brandBlueHover: #2a38cf;
+  --blueLinkHover: #2a38cf;
+  --darkGrey: #6e7086;
+  --borderColor: rgb(210, 211, 226);
+  --texture: repeating-linear-gradient(-45deg, rgba(210, 211, 226, 0.5), rgba(210, 211, 226, 0.5) 1px, transparent 1px, transparent 6px);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: var(--bgColor);
+  background-image: var(--texture);
+  background-size: 4px 4px;
+  color: var(--textColor);
+  overflow-y: hidden;
+  max-height: 100vh;
+
+  /* background-image:  linear-gradient(135deg, #e7eefc 20%, transparent 5%), linear-gradient(225deg, #e7eefc 20%, transparent 5%), linear-gradient(45deg, #e7eefc 20%, transparent 5%), linear-gradient(315deg, #e7eefc 20%, var(--bgColor) 5%);
+  background-position:  5px 0, 5px 0, 0 0, 0 0;
+  background-size: 5px 5px;
+  background-repeat: repeat; */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all ease .5s;
+}
+
+a:hover {
+  color: var(--brandBlueHover);
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--borderColor);
+  width: 100%;
+}
+
+.trash img {
+  filter: hue-rotate(360deg) saturate(6);
+}
+
+input, textarea{
+  background-color: var(--lightBg);
+  color: var(--textColor);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bgColor: #191a30;
+    --textColor: #d4d4d4;
+    --lightBg: #242641;
+    --lightBg: #0b0e22;
+    --borderColor: #37385f;
+    --textColorMuted: #d4d4d4;
+    --blueLink: #6e7af9;
+    --blueLinkHover: #838cf1;
+  }
+  body {
+    background: var(--bgColor);
+  }
+  .trash img {
+    filter: hue-rotate(2deg) saturate(7) brightness(2);
+  }
+}
