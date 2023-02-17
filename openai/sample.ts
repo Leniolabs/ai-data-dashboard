@@ -1271,10 +1271,10 @@ Espresso No. 3	El Gran Cafe	Medium-Light	Guatemala	Guatemala	5.88	94`,
   samples: [
     {
       context: `This dataset contains information about several different coffees from different origins and roasters.
-      The column roast indicates the roast level of the coffee.
-      The origin_1 column contains the country of origin of the coffee.
-      The column 100g_USD contains the price for 100 grams of coffee.
-      A rating column is a number from 0 to 100 that indicates how good the coffee is.`,
+The column roast indicates the roast level of the coffee.
+The origin_1 column contains the country of origin of the coffee.
+The column 100g_USD contains the price for 100 grams of coffee.
+A rating column is a number from 0 to 100 that indicates how good the coffee is.`,
       dashboard: {
         filters: [
           { title: "Country of Origin", column: "origin_1" },
@@ -1411,10 +1411,10 @@ Espresso No. 3	El Gran Cafe	Medium-Light	Guatemala	Guatemala	5.88	94`,
     },
     {
       context: `This dataset contains information about several different coffees from different origins and roasters.
-      The column roast indicates the roast level of the coffee.
-      The origin_1 column contains the country of origin of the coffee.
-      The column 100g_USD contains the price for 100 grams of coffee.
-      A rating column is a number from 0 to 100 that indicates how good the coffee is.
+The column roast indicates the roast level of the coffee.
+The origin_1 column contains the country of origin of the coffee.
+The column 100g_USD contains the price for 100 grams of coffee.
+A rating column is a number from 0 to 100 that indicates how good the coffee is.
 
 I want a KPI showing the name of the best coffee by rating in the dataset.
 
@@ -1453,10 +1453,10 @@ I want two of the charts to show the following:
     },
     {
       context: `This dataset contains information about several different coffes from different origins and roasters.
-      The column roast indicates the roast level of the coffee.
-      The origin_1 column contains the country of origin of the coffee.
-      The column 100g_USD contains the price for 100 grams of coffee.
-      A rating column is a number from 0 to 100 that indicates how good the coffee is.
+The column roast indicates the roast level of the coffee.
+The origin_1 column contains the country of origin of the coffee.
+The column 100g_USD contains the price for 100 grams of coffee.
+A rating column is a number from 0 to 100 that indicates how good the coffee is.
 
 Of all the 4 generated KPIs, one shows the name of the best coffee by rating in the dataset.`,
       dashboard: {
@@ -1768,15 +1768,15 @@ const youtubeSample = {
     {
       context: `What is the most subscribed YouTube Channel?
 
-      Indian music network T-Series had the most YouTube subscribers in the world as of November 2022, with 229 million users following the channel. YouTube Movies ranked second with roughly 158 million subscribers.
-      
-      How many hours of video are uploaded to YouTube every minute?
-      
-      YouTube was launched in 2005 as a platform for sharing user-generated videos such as vlogs, tutorials, or original series. The site grew rapidly and reportedly had 100 million video views per day and more than 65 thousand daily uploads only a year later. As of February 2020, more than 500 hours of video were uploaded to YouTube every minute, up from a mere 24 hours of content uploads per minute in 2010.
-      
-      Highest earning YouTubers
-      
-      In November 2022, MrBeast surpassed long-standing most subscribed YouTuber PewDiePie, having reached approximately 112 million subscribers. Due to the high number of subscribers and even higher number of views, these out-of-the-box stars not only have millions of fans, but also considerable earnings from their YouTube activities. In 2021, MrBeast was estimated to have earned around 54 million U.S. dollars, topping the ranking of the highest-earning YouTube creators.`,
+Indian music network T-Series had the most YouTube subscribers in the world as of November 2022, with 229 million users following the channel. YouTube Movies ranked second with roughly 158 million subscribers.
+
+How many hours of video are uploaded to YouTube every minute?
+
+YouTube was launched in 2005 as a platform for sharing user-generated videos such as vlogs, tutorials, or original series. The site grew rapidly and reportedly had 100 million video views per day and more than 65 thousand daily uploads only a year later. As of February 2020, more than 500 hours of video were uploaded to YouTube every minute, up from a mere 24 hours of content uploads per minute in 2010.
+
+Highest earning YouTubers
+
+In November 2022, MrBeast surpassed long-standing most subscribed YouTuber PewDiePie, having reached approximately 112 million subscribers. Due to the high number of subscribers and even higher number of views, these out-of-the-box stars not only have millions of fans, but also considerable earnings from their YouTube activities. In 2021, MrBeast was estimated to have earned around 54 million U.S. dollars, topping the ranking of the highest-earning YouTube creators.`,
       dashboard: {
         filters: [
           { title: "Rank Filter", column: "Rank" },

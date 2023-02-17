@@ -6,7 +6,7 @@ export function ButtonGithub() {
       className={styles.btnGithub}
       target="_blank"
       aria-label="View source on GitHub"
-      href="https://github.com/Leniolabs/ai-data-dashboard"
+      href="https://github.com/Leniolabs/data-dashboard"
       rel="noreferrer"
     >
       <svg

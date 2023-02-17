@@ -33,9 +33,9 @@ export function SettingsModal(
   }, [props.onCancel]);
 
   return (
-    <div className={styles.settingsModal}>
-      <div className={styles.settingsModalContainer}>
-        <div className={styles.settingsContent}>
+    <div className={styles.modal}>
+      <div className={styles.modalContainer}>
+        <div className={styles.modalContent}>
           <TextInput
             value={settings.apikey}
             onChange={handleApiKeyChange}
@@ -60,7 +60,7 @@ export function SettingsModal(
             type="number"
           />
         </div>
-        <div className={styles.settingsFooter}>
+        <div className={styles.modalFooter}>
           <Button outline onClick={handleCancel}>
             Cancel
           </Button>

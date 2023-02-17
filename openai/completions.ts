@@ -1,4 +1,6 @@
-type ChatInteraction = {
+const GPT3Encoder = require("@syonfox/gpt-3-encoder");
+
+export type ChatInteraction = {
   question: string;
   reply?: string;
 };
@@ -7,6 +9,10 @@ export async function queryCompletions(
   prompt: string,
   options: { apikey: string }
 ): Promise<string> {
+  const usedTokens = GPT3Encoder.countTokens(prompt);
+
+  if (usedTokens > 3750) return prompt;
+
   return fetch("https://api.openai.com/v1/completions", {
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +21,7 @@ export async function queryCompletions(
     method: "POST",
     body: JSON.stringify({
       echo: true,
-      max_tokens: 2000,
+      max_tokens: 4000 - usedTokens,
       model: "text-davinci-003",
       prompt,
       stop: ["Human:", "AI:"],

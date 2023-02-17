@@ -86,7 +86,6 @@ export function Table(props: TableProps) {
     columns,
     defaultColumn,
     getCoreRowModel: getCoreRowModel(),
-    debugTable: true,
     meta: {
       updateData: (rowIndex, columnId, value) => {
         // Skip age index reset until after next rerender

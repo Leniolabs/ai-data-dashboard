@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { stringify } from "querystring";
 import React from "react";
 import {
   Button,
@@ -19,18 +18,25 @@ import {
   ButtonLink,
   UploadDatasetButton,
   ViewSelect,
-  OpenAIErrorMessage,
   EmptyMessage,
   DataLoadedMessage,
   MissingApiKeyMessage,
 } from "../components";
 import { HireUs } from "../components/layout/HireUs";
 import { Loader } from "../components/layout/Loader";
+import { QuestionModal } from "../components/layout/QuestionModal";
 import { Table } from "../components/layout/Table";
-import { generateDashboard, generatePrompt } from "../openai";
-import { getRandomDataset, sample } from "../openai/sample";
+import {
+  ChatInteraction,
+  generateDashboard,
+  getInitialQuestion,
+  getPrompt,
+  queryDashboard,
+} from "../openai";
+import { getRandomDataset } from "../openai/sample";
+import { promptTemplate } from "../openai/template";
 import { IDashboard, IDataset, ISettings } from "../types";
-import { isDataValid, parseData, stringifyData } from "../utils/parseData";
+import { parseData } from "../utils/parseData";
 
 export default function Home() {
   const [view, setView] = React.useState("dashboard");
@@ -41,12 +47,33 @@ export default function Home() {
   });
   const [loading, setLoading] = React.useState(false);
 
-  const [data, setData] = React.useState<IDataset>();
   const [userContext, setUserContext] = React.useState<string>("");
+  const [chat, setChat] = React.useState<ChatInteraction[]>([]);
+  const [data, setData] = React.useState<IDataset>();
 
   const [currentSampleIndex, setCurrentSampleIndex] = React.useState(-1);
   const [dashboard, setDashboard] = React.useState<IDashboard | null>();
   const [showSettings, setShowSettings] = React.useState(false);
+  const [showQuestion, setShowQuestion] = React.useState(false);
+
+  const handleRandomDataset = React.useCallback(() => {
+    const { data, dashboard, context, index } =
+      getRandomDataset(currentSampleIndex);
+    setData(parseData(data));
+    setDashboard(dashboard);
+    setUserContext(context);
+    setCurrentSampleIndex(index);
+    setChat([
+      {
+        question: getInitialQuestion(
+          parseData(data),
+          context,
+          settings.sampleRows
+        ),
+        reply: JSON.stringify(dashboard, undefined, 1),
+      },
+    ]);
+  }, [currentSampleIndex]);
 
   React.useEffect(() => {
     const config = localStorage.getItem("analyzer-settings");
@@ -54,11 +81,7 @@ export default function Home() {
       setSettings(JSON.parse(config) as ISettings);
     }
 
-    const { data, dashboard, context, index } = getRandomDataset(-1);
-    setData(parseData(data));
-    setDashboard(dashboard);
-    setUserContext(context);
-    setCurrentSampleIndex(index);
+    handleRandomDataset();
   }, []);
 
   const handleAnalyze = React.useCallback(() => {
@@ -68,6 +91,7 @@ export default function Home() {
       setLoading(true);
       generateDashboard(data, userContext, settings.sampleRows, settings.apikey)
         .then((response) => {
+          setChat(response.chat);
           setDashboard(response.dashboard);
           setLoading(false);
         })
@@ -78,14 +102,25 @@ export default function Home() {
     }
   }, [data, userContext, settings]);
 
-  const handleRandomDataset = React.useCallback(() => {
-    const { data, dashboard, context, index } =
-      getRandomDataset(currentSampleIndex);
-    setData(parseData(data));
-    setDashboard(dashboard);
-    setUserContext(context);
-    setCurrentSampleIndex(index);
-  }, [currentSampleIndex]);
+  const handleDashboardUpdate = React.useCallback(
+    (question: string) => {
+      handleCloseQuestion();
+      if (settings.apikey && chat) {
+        setLoading(true);
+        queryDashboard(question, chat, settings.apikey)
+          .then((response) => {
+            setChat(response.chat);
+            setDashboard(response.dashboard);
+            setLoading(false);
+          })
+          .catch((err) => {
+            setDashboard(null);
+            setLoading(false);
+          });
+      }
+    },
+    [settings, chat]
+  );
 
   // console.log(dashboard, stringifyData(data || []));
 
@@ -99,6 +134,14 @@ export default function Home() {
     localStorage.setItem("analyzer-settings", JSON.stringify(settings));
     setSettings(settings);
     setShowSettings(false);
+  }, []);
+
+  const handleShowQuestion = React.useCallback(() => {
+    setShowQuestion(true);
+  }, []);
+
+  const handleCloseQuestion = React.useCallback(() => {
+    setShowQuestion(false);
   }, []);
 
   const handleShowSettings = React.useCallback(() => {
@@ -150,14 +193,14 @@ export default function Home() {
           content="https://labs.leniolabs.com/data-dashboard/meta.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="GPT3 Data Visualization Tool" />
+        <meta name="twitter:title" content="AI Data Dashboard" />
         <meta
           name="twitter:url"
           content="https://labs.leniolabs.com/data-dashboard/"
         />
         <meta
           property="twitter:description"
-          content="Visualize and analyze data with our app created using OpenAI's GPT3"
+          content="Visualize data with our tool created using OpenAI's GPT3 technology"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -235,8 +278,19 @@ export default function Home() {
           </PanelContent>
         </Panel>
         <Panel>
-          <PanelContent>
+          <PanelHeader>
+            <ButtonLink onClick={handleShowQuestion}>
+              + Add a custom Chart/KPI
+            </ButtonLink>
+            {showQuestion && (
+              <QuestionModal
+                onSubmit={handleDashboardUpdate}
+                onCancel={handleCloseQuestion}
+              />
+            )}
             <ViewSelect value={view} onChange={setView} />
+          </PanelHeader>
+          <PanelContent>
             {!settings.apikey && !data && !dashboard ? (
               <MissingApiKeyMessage
                 onApiKeyClick={handleShowSettings}
@@ -259,10 +313,7 @@ export default function Home() {
               <CodeHighlighter dashboard={dashboard} />
             ) : null}
             {data && view === "prompt" && (
-              <TextAreaInput
-                disabled
-                value={generatePrompt(data, userContext, settings.sampleRows)}
-              />
+              <TextAreaInput disabled value={getPrompt(promptTemplate, chat)} />
             )}
           </PanelContent>
         </Panel>
