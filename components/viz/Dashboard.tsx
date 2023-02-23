@@ -9,6 +9,9 @@ import { PieChart } from "./PieChart";
 import { className } from "../../utils/className";
 import { TreemapChart } from "./TreemapChart";
 
+
+import { ScatterChart } from "./ScatterChart";
+
 export function Dashboard(
   props: React.PropsWithChildren<{
     dashboard: IDashboard;
@@ -35,7 +38,6 @@ export function Dashboard(
     }
     return props.data;
   }, [filters, props.data]);
-
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.filtersRow}>
@@ -76,6 +78,9 @@ export function Dashboard(
           )}
           {chart.chartType === "treemapChart" && (
             <TreemapChart config={chart} data={filteredData} />
+          )}
+          {chart.chartType === "scatterChart" && (
+            <ScatterChart config={chart} data={filteredData} />
           )}
         </div>
       ))}

@@ -1406,6 +1406,12 @@ Espresso No. 3	El Gran Cafe	Medium-Light	Guatemala	Guatemala	5.88	94`,
             javascriptFunction:
               "data => { let result = []; let tempResult = {}; data.forEach(row => { if(row['rating']) { const value = Number(row['rating'].replace(',', '')); if(!isNaN(value)) { if(tempResult.hasOwnProperty(row['loc_country'])) { tempResult[row['loc_country']] += value; } else { tempResult[row['loc_country']] = value; } } } }); for(const key in tempResult) { result.push({x: key, y: tempResult[key]}); } return result.sort((a, b) => b.y - a.y).slice(0, 10); }",
           },
+          {
+            "title": "Price vs Rating",
+            "chartType": "scatterChart",
+            "javascriptFunction": 
+              "data => { const result = []; data.forEach(row => { if(row['100g_USD'] && row['rating']) { const price = parseNumber(row['100g_USD']); const rating = parseNumber(row['rating']); if(!isNaN(price) && !isNaN(rating)) { result.push({ x: price, y: rating }); } } }); return result; }"
+          },
         ],
       },
     },
@@ -1596,6 +1602,12 @@ Survived: 0 means the passenger didn't survive, 1 means the passenger survived.`
             javascriptFunction:
               "data => { const survivorsByEmbarked = data.reduce((acc, row) => { if(row['Embarked']) { const survived = Number((row['Survived'] || '0').replaceAll(',', '')); if(!isNaN(survived)) { acc[row['Embarked']] = (acc[row['Embarked']] || 0) + survived; } } return acc; }, {}); const entries = Object.entries(survivorsByEmbarked); entries.sort((a, b) => b[1] - a[1]); return entries.slice(0, 10).map(entry => ({ x: entry[0], y: entry[1] })); }",
           },
+          {
+            "title": "Age by Fare",
+            "chartType": "scatterChart",
+            "javascriptFunction": 
+              "data => { const result = []; data.forEach(row => { const fare = parseNumber(row['Fare']); const age = parseNumber(row['Age']); if(!isNaN(fare) && !isNaN(age)) { result.push({ x: fare, y: age }); } }); return result; }"
+          },
         ],
       },
     },
@@ -1678,6 +1690,12 @@ const highTechSample = {
             chartType: "treemapChart",
             javascriptFunction:
               "data => { const chartData = []; data.forEach(row => { if(row['symbol'] && row['beta']) { const beta = parseNumber(row['beta']); if(!isNaN(beta)) { chartData.push({ x: row['symbol'], y: beta }); } } }); return chartData.sort((a, b) => b.y - a.y).slice(0, 10); }",
+          },
+          {
+            "title": "Price vs. Share Volume",
+            "chartType": "scatterChart",
+            "javascriptFunction": 
+              "data => { const xValues = data.map(row => parseNumber(row['price'])); const yValues = data.map(row => parseNumber(row['share_volume'])); const result = []; xValues.forEach((x, index) => { if(!isNaN(x) && !isNaN(yValues[index])) { result.push({ x, y: yValues[index] }); } }); return result; }"
           },
         ],
       },
@@ -1843,6 +1861,12 @@ const youtubeSample = {
             javascriptFunction:
               "data => { let chartData = {}; data.forEach(row => { if(row['Started'] && row['Video Count']) { const started = row['Started']; const videoCount = parseNumber(row['Video Count']); if(!isNaN(videoCount)) { if(chartData[started]) { chartData[started] += videoCount; } else { chartData[started] = videoCount; } } } }); let result = []; for(let key in chartData) { result.push({ x: key, y: chartData[key] }); } return result; }",
           },
+          {
+            title: "Video Views by Subscribers",
+            chartType: "scatterChart",
+            javascriptFunction: 
+              "data => { const result = []; data.forEach(row => { if(row['Subscribers'] && row['Video Views']) { const subscribers = parseNumber(row['Subscribers']); const videoViews = parseNumber(row['Video Views']); if(!isNaN(subscribers) && !isNaN(videoViews)) { result.push({ x: subscribers, y: videoViews }); } } }); return result; }"
+}
         ],
       },
     },
