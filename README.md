@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Dashboard Generator
 
-## Getting Started
+AI Dashboard Generator is an open-source dashboard generator based on Next.js and OpenAI's GPT3 technology. The tool allows users to feed existing tables or datasets, and from there, it understands the intent of the table and generates a visual representation of the data.
 
-First, run the development server:
+It utilizes a prompt engineered to make the AI reply using JSON to create simple and useful visualizations. You do not need to add any requirements for the titles or content, as the AI does it all by using the data you provide. You can upload your data in CSV files and then easily visualize your data and gain valuable insights into your business or organization.
 
-```bash
-npm run dev
-# or
-yarn dev
+You can try out the AI Dashboard Generator for yourself at https://labs.leniolabs.com/data-dashboard/.
+
+## Installation
+
+To get started with the AI Dashboard Generator, you'll need to have Node.js and npm installed on your machine. Once you've done that, you can install the dependencies by running the following command in your terminal:
+
+```
+> npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, to use the AI Dashboard Generator, simply run the following command in your terminal:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+> npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+This will start the development server and open the project in your browser at http://localhost:3000.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+From a user perspective, the usage of the tool should follow these next steps:
 
-## Learn More
+1. **Set up your API Key from OpenAI**: To use AI Dashboard Generator, you'll need to set up your API key from OpenAI. You can find instructions on how to get your API key on the OpenAI website.
 
-To learn more about Next.js, take a look at the following resources:
+2. **Upload your CSV dataset (or use the example)**: Once you have your API key, you can upload your CSV dataset to AI Dashboard Generator. Alternatively, you can use the example dataset provided.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Visualize your data**: AI Dashboard Generator will automatically visualize your data using ChatGPT and Next.js. You can filter the parameters to customize your visualization further. Once you're happy with your visualization, you can export it directly into javascript code.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+AI Dashboard Generator is a powerful tool that makes it easy to generate insightful data visualizations from your existing tables or datasets. Give it a try and see how it can help you make sense of your data!
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We welcome contributions from developers of all skill levels! If you'd like to contribute to the AI Dashboard Generator, please follow these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Fork the project repository.
+2. Create a new branch for your changes.
+3. Make your changes and test them thoroughly.
+4. Commit your changes and push them to your fork.
+5. Create a pull request to merge your changes into the main project.
+
+Before submitting your pull request, please ensure that your code adheres to the project's coding standards and includes any necessary documentation or tests.
+
+## License
+
+The AI Dashboard Generator is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Contact
+
+If you have any questions or feedback about the AI Dashboard Generator, please feel free to contact us at info@leniolabs.com. We'd love to hear from you!
