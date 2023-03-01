@@ -53,5 +53,3 @@ The AI Dashboard Generator is licensed under the MIT License. See the [LICENSE](
 ## Contact
 
 If you have any questions or feedback about the AI Dashboard Generator, please feel free to contact us at info@leniolabs.com. We'd love to hear from you!
-
-![Leniolabs_ logo](https://my-lenio-leniolabs.s3.amazonaws.com/uploads/tenant/logo/1/lenio-favicon__1_.png?X-Amz-Expires=600&amp;X-Amz-Date=20230228T005016Z&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIATICXLOZPPYNL3L6U%2F20230228%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=400076f2e2716d1dbd61d9f783b27a701944de675f354549733c74baec366f10) Leniolabs_
