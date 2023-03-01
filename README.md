@@ -1,8 +1,10 @@
 # AI Dashboard Generator
 
-AI Dashboard Generator is an open-source dashboard generator based on Next.js and ChatGPT. The tool allows users to feed existing tables or datasets, and from there, it understands the intent of the table and generates a visual representation of the data.
+AI Dashboard Generator is an open-source dashboard generator based on Next.js and OpenAI's GPT3 technology. The tool allows users to feed existing tables or datasets, and from there, it understands the intent of the table and generates a visual representation of the data.
 
-Internally, AI Dashboard Generator uses a custom CSV dataset and ChatGPT with a prompt model contextualized around JSON responses to give simple and useful visualizations. You can filter the parameters and export the dataviz directly into javascript code.
+It utilizes a prompt engineered to make the AI reply using JSON to create simple and useful visualizations. You do not need to add any requirements for the titles or content, as the AI does it all by using the data you provide. You can upload your data in CSV files and then easily visualize your data and gain valuable insights into your business or organization.
+
+You can try out the AI Dashboard Generator for yourself at https://labs.leniolabs.com/data-dashboard/.
 
 ## Installation
 
@@ -11,6 +13,14 @@ To get started with the AI Dashboard Generator, you'll need to have Node.js and 
 ```
 > npm install
 ```
+
+Then, to use the AI Dashboard Generator, simply run the following command in your terminal:
+
+```
+> npm run dev
+```
+
+This will start the development server and open the project in your browser at http://localhost:3000.
 
 ## Usage
 
