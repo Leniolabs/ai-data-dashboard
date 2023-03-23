@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/Components.module.scss";
+import gtag from "../../lib/gtag";
 import { Button } from "./Button";
 import { ButtonIcon } from "./ButtonIcon";
 import { TextInput } from "./TextInput";
@@ -25,6 +26,10 @@ export function SettingsModal(
   }, []);
 
   const handleSave = React.useCallback(() => {
+    gtag.report("event", "api_key", {
+      event_category: "settings",
+      event_label: "setting_up",
+    });
     props.onChange?.(settings);
   }, [props.onChange, settings]);
 
