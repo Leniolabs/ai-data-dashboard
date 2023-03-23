@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/Components.module.scss";
+import gtag from "../../lib/gtag";
 
 interface ViewSelectProps {
   value: string;
@@ -10,6 +11,10 @@ export function ViewSelect(props: ViewSelectProps) {
   const handleChange = React.useCallback(
     (value: string) => {
       return () => {
+        gtag.report("event", "view_selection", {
+          event_category: "settings",
+          event_label: value,
+        });
         props.onChange?.(value);
       };
     },

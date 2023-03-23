@@ -31,6 +31,7 @@ import { generateDashboard, generatePrompt } from "../openai";
 import { getRandomDataset, sample } from "../openai/sample";
 import { IDashboard, IDataset, ISettings } from "../types";
 import { isDataValid, parseData, stringifyData } from "../utils/parseData";
+import gtag from "../lib/gtag";
 
 export default function Home() {
   const [view, setView] = React.useState("dashboard");
@@ -110,6 +111,10 @@ export default function Home() {
   }, []);
 
   const handleDatasetChange = React.useCallback((dataset: string) => {
+    gtag.report("event", "upload_data", {
+      event_category: "settings",
+      event_label: "uploaded",
+    });
     setData(parseData(dataset));
     setDashboard(null);
   }, []);
