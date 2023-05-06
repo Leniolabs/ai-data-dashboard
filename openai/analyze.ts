@@ -1,14 +1,14 @@
 import { IDashboard, IDataset } from "../types";
 import { stringifyData } from "../utils/parseData";
 import { getPrompt, queryCompletionsChat } from "./completions";
-import { promptTemplate } from "./template";
+import { promptTemplate, promptGPT35TurboTemplate } from "./template";
 
 export function generatePrompt(
   dataset: IDataset,
   userContext: string,
   sampleRows: number
 ) {
-  return getPrompt(promptTemplate, [
+  return getPrompt(promptTemplate, [ // TODO: use promptGPT35TurboTemplate when user choose it
     {
       question: `
 This is the dataset:
@@ -42,7 +42,7 @@ export async function generateDashboard(
   }
 
   const response = await queryCompletionsChat(
-    promptTemplate,
+    promptTemplate, // TODO: use promptGPT35TurboTemplate when user choose it
     [
       {
         question: `
@@ -63,9 +63,6 @@ More information about the dataset:
     ],
     { apikey }
   );
-
-  // console.log("analyze", response?.[0].reply || "");
-  // console.log("analyze", JSON.parse(response?.[0].reply || ""));
 
   return {
     response: response?.[0].reply || "",

@@ -44,3 +44,8 @@ if(row['value']) {
 - Should only be used if the x property is of type string
 - Should only show the top 10 y values
 `;
+
+export const promptGPT35TurboTemplate = `
+  ${promptTemplate}
+  Reply in json format only but even the jasvascript function should be in json format, just that and without non-whitespace character
+`;
