@@ -57,15 +57,16 @@ export async function queryCompletionsChat(
   options: { apikey: string },
   isGpt35Turbo = false
 ): Promise<ChatInteraction[]> {
+  const promptResult = getPrompt(context, interactions);
   const completion = await queryCompletions(
-    getPrompt(context, interactions),
+    promptResult,
     options,
     isGpt35Turbo
   );
   let chat;
   if (isGpt35Turbo) {
     chat = [{
-      question: "",
+      question: promptResult.split("Human:")[1].split("AI:")[0].trim(),
       reply: completion
     }]
   } else {

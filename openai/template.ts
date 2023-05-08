@@ -47,5 +47,5 @@ if(row['value']) {
 
 export const promptGPT35TurboTemplate = `
   ${promptTemplate}
-  Reply in json format only but even the jasvascript function should be in json format, just that and without non-whitespace character
+  Reply in json format only but even the javascript function should be in json format, just that and without whitespace character
 `;
