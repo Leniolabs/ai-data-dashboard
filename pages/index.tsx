@@ -39,6 +39,7 @@ export default function Home() {
   const [settings, setSettings] = React.useState<ISettings>({
     apikey: "",
     sampleRows: 10,
+    model: ""
   });
   const [loading, setLoading] = React.useState(false);
 
@@ -67,7 +68,7 @@ export default function Home() {
       setShowSettings(true);
     } else if (data) {
       setLoading(true);
-      generateDashboard(data, userContext, settings.sampleRows, settings.apikey)
+      generateDashboard(data, userContext, settings.sampleRows, settings.apikey, settings.model)
         .then((response) => {
           setDashboard(response.dashboard);
           setLoading(false);
@@ -266,7 +267,7 @@ export default function Home() {
             {data && view === "prompt" && (
               <TextAreaInput
                 disabled
-                value={generatePrompt(data, userContext, settings.sampleRows)}
+                value={generatePrompt(data, userContext, settings.sampleRows, settings.model)}
               />
             )}
           </PanelContent>

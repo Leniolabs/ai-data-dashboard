@@ -1,6 +1,7 @@
 export interface ISettings {
   apikey: string;
   sampleRows: number;
+  model: string
 }
 
 export interface IFilter {
@@ -29,3 +30,16 @@ export type IDatasetRecord = {
 };
 
 export type IDataset = IDatasetRecord[];
+
+export type PromptModel = {
+  [key: string]: string,
+};
+
+export interface GPTModel {
+  [key: string]: {
+    [key: string]: (
+      prompt: string,
+      options: { apikey: string; model: string }
+    ) => Promise<string>;
+  };
+}

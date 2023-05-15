@@ -45,7 +45,8 @@ if(row['value']) {
 - Should only show the top 10 y values
 `;
 
-export const promptGPT35TurboTemplate = `
-  ${promptTemplate}
-  Reply in json format only but even the javascript function should be in json format, just that and without whitespace character
+export const promptGPT35TurboTemplate = `${promptTemplate}
+  The following topics should be considered:
+  - Reply only in JSON format
+  - Javascript functions should be in string format, without any whitespace characters
 `;
