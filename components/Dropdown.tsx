@@ -19,7 +19,7 @@ export default function Dropdown(
     },
     [props.onChange]
   );
-  console.log("props.value ", props.value);
+
   return (
     <div className={styles.dropdownFilter}>
       <label>{props.title}</label>

@@ -4,7 +4,7 @@ import gtag from "../../lib/gtag";
 import { Button } from "./Button";
 import { TextInput } from "./TextInput";
 import Dropdown from "../Dropdown";
-import { getModelOptions } from "../../models";
+import { GPT_MODEL } from "../../constants/models";
 
 export function SettingsModal(
   props: React.PropsWithChildren<{
@@ -72,7 +72,7 @@ export function SettingsModal(
           />
           <Dropdown
             onChange={handleModelChange}
-            options={getModelOptions()}
+            options={Object.values(GPT_MODEL)}
             title="Model"
             value={settings.model}
           />

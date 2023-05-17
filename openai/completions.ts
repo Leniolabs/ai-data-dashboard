@@ -1,4 +1,5 @@
-import { getGPTModel } from "../models";
+import { GPT_MODEL } from "../constants/models";
+import { textDavinci003Completions, gpt35TurboCompletions } from "../models";
 
 type ChatInteraction = {
   question?: string;
@@ -22,7 +23,14 @@ export async function queryCompletionsChat(
   options: { apikey: string, model: string }
 ): Promise<ChatInteraction[]> {
   const promptResult = getPrompt(context, interactions);
-  const queryCompletions = getGPTModel[options.model].queryCompletions;
+  let queryCompletions;
+  switch (options.model) {
+    case GPT_MODEL.GPT_35_TURBO:
+      queryCompletions = gpt35TurboCompletions;
+      break;
+    default:
+      queryCompletions = textDavinci003Completions;
+  };
   const completion = await queryCompletions(
     promptResult,
     options

@@ -1,7 +1,7 @@
 import { IDashboard, IDataset } from "../types";
 import { stringifyData } from "../utils/parseData";
 import { getPrompt, queryCompletionsChat } from "./completions";
-import { getPromptModel } from "../models";
+import { getPromptModel } from "../utils/models";
 
 export function generatePrompt(
   dataset: IDataset,
@@ -9,7 +9,7 @@ export function generatePrompt(
   sampleRows: number,
   model: string
 ) {
-  return getPrompt(getPromptModel[model], [
+  return getPrompt(getPromptModel(model), [
     {
       question: `
 This is the dataset:
@@ -43,7 +43,7 @@ export async function generateDashboard(
     randomDatasetSample.push(dataset[randomIndex]);
   }
   const response = await queryCompletionsChat(
-    getPromptModel[model],
+    getPromptModel(model),
     [
       {
         question: `
