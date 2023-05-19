@@ -30,3 +30,8 @@ export type IDatasetRecord = {
 };
 
 export type IDataset = IDatasetRecord[];
+
+export type ChatInteraction = {
+  question?: string;
+  reply?: string;
+};

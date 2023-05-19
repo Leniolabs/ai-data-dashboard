@@ -1,4 +1,4 @@
-import { GPT_MODEL } from "../constants/models";
+import { GPT_MODEL } from "../openai/constants";
 import { promptTemplate, promptGPT35TurboTemplate } from "../openai/template";
 
 export const getPromptModel = (model: string) => {

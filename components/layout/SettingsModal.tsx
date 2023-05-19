@@ -3,8 +3,8 @@ import styles from "../../styles/Components.module.scss";
 import gtag from "../../lib/gtag";
 import { Button } from "./Button";
 import { TextInput } from "./TextInput";
-import Dropdown from "../Dropdown";
-import { GPT_MODEL } from "../../constants/models";
+import SelectInput from "./SelectInput";
+import { GPT_MODEL } from "../../openai/constants";
 
 export function SettingsModal(
   props: React.PropsWithChildren<{
@@ -70,7 +70,7 @@ export function SettingsModal(
             label="Rows to sample"
             type="number"
           />
-          <Dropdown
+          <SelectInput
             onChange={handleModelChange}
             options={Object.values(GPT_MODEL)}
             title="Model"

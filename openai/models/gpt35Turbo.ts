@@ -1,7 +1,9 @@
-export async function gpt35TurboCompletions(
+import { ChatInteraction } from "../../types";
+
+export async function queryGpt35TurboCompletions(
   prompt: string,
   options: { apikey: string, model: string }
-): Promise<string> {
+): Promise<ChatInteraction[]> {
   return fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
       "Content-Type": "application/json",
@@ -20,6 +22,9 @@ export async function gpt35TurboCompletions(
   })
     .then((response) => response.json())
     .then((resp) => {
-      return resp.choices?.[0]?.message?.content || "";
+      const chat = [{
+        reply: resp.choices?.[0]?.message?.content || ""
+      }];
+      return chat;
     });
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/Components.module.scss";
+import styles from "../../styles/Components.module.scss";
 
 export default function Dropdown(
   props: React.PropsWithChildren<{
@@ -9,9 +9,6 @@ export default function Dropdown(
     value: string
   }>
 ) {
-  const values = React.useMemo(() => {
-    return props.options
-  }, [props.options]);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,8 +20,8 @@ export default function Dropdown(
   return (
     <div className={styles.dropdownFilter}>
       <label>{props.title}</label>
-      <select value={props.value || values[0]} onChange={handleChange}>
-        {values.map((value, idx) => (
+      <select value={props.value || props.options[0]} onChange={handleChange}>
+        {props.options.map((value, idx) => (
           <option key={idx} value={value}>
             {value}
           </option>
