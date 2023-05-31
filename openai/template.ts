@@ -44,3 +44,9 @@ if(row['value']) {
 - Should only be used if the x property is of type string
 - Should only show the top 10 y values
 `;
+
+export const promptGPT35TurboTemplate = `${promptTemplate}
+  The following topics should be considered:
+  - Reply only in JSON format
+  - Javascript functions should be in string format, without any whitespace characters
+`;

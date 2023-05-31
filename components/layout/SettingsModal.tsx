@@ -2,16 +2,18 @@ import React from "react";
 import styles from "../../styles/Components.module.scss";
 import gtag from "../../lib/gtag";
 import { Button } from "./Button";
-import { ButtonIcon } from "./ButtonIcon";
 import { TextInput } from "./TextInput";
+import SelectInput from "./SelectInput";
+import { GPT_MODEL } from "../../openai/constants";
 
 export function SettingsModal(
   props: React.PropsWithChildren<{
     value: {
       apikey: string;
       sampleRows: number;
+      model: string
     };
-    onChange?: (value: { apikey: string; sampleRows: number }) => void;
+    onChange?: (value: { apikey: string; sampleRows: number, model: string }) => void;
     onCancel?: () => void;
   }>
 ) {
@@ -23,6 +25,10 @@ export function SettingsModal(
 
   const handleRowsSampleChange = React.useCallback((sampleRows: number) => {
     setSettings((settings) => ({ ...settings, sampleRows }));
+  }, []);
+
+  const handleModelChange = React.useCallback((model: string) => {
+    setSettings((settings) => ({ ...settings, model }));
   }, []);
 
   const handleSave = React.useCallback(() => {
@@ -63,6 +69,12 @@ export function SettingsModal(
             onChange={handleRowsSampleChange}
             label="Rows to sample"
             type="number"
+          />
+          <SelectInput
+            onChange={handleModelChange}
+            options={Object.values(GPT_MODEL)}
+            title="Model"
+            value={settings.model}
           />
         </div>
         <div className={styles.settingsFooter}>

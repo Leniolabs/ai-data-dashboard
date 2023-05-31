@@ -1,6 +1,7 @@
 export interface ISettings {
   apikey: string;
   sampleRows: number;
+  model: string
 }
 
 export interface IFilter {
@@ -29,3 +30,8 @@ export type IDatasetRecord = {
 };
 
 export type IDataset = IDatasetRecord[];
+
+export type ChatInteraction = {
+  question?: string;
+  reply?: string;
+};
